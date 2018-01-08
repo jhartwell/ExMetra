@@ -12,13 +12,13 @@ defmodule ExMetra.AgencyTest do
   @agency_fare_url "https://metrarail.com/tickets"
 
   @json %{
-    agency_id: @agency_id,
-    agency_name: @agency_name,
-    agency_url: @agency_url,
-    agency_timezone: @agency_timezone,
-    agency_lang: @agency_lang,
-    agency_phone: @agency_phone,
-    agency_fare_url: @agency_fare_url
+    "agency_id" => @agency_id,
+    "agency_name" => @agency_name,
+    "agency_url" => @agency_url,
+    "agency_timezone" => @agency_timezone,
+    "agency_lang" => @agency_lang,
+    "agency_phone" => @agency_phone,
+    "agency_fare_url" => @agency_fare_url
   }
 
   test "parsing valid json" do

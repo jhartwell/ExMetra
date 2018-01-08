@@ -14,15 +14,15 @@ defmodule ExMetra.RouteTest do
   @route_url "https://metrarail.com/maps-schedules/train-lines/BNSF"
 
   @json %{
-    route_id: @route_id,
-    route_short_name: @route_short_name,
-    route_long_name: @route_long_name,
-    route_desc: @route_desc,
-    agency_id: @agency_id,
-    route_type: @route_type,
-    route_color: @route_color,
-    route_text_color: @route_text_color,
-    route_url: @route_url
+    "route_id" => @route_id,
+    "route_short_name" => @route_short_name,
+    "route_long_name" => @route_long_name,
+    "route_desc" => @route_desc,
+    "agency_id" => @agency_id,
+    "route_type" => @route_type,
+    "route_color" => @route_color,
+    "route_text_color" => @route_text_color,
+    "route_url" => @route_url
   }
 
   test "parsing valid json" do

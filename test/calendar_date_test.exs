@@ -7,9 +7,9 @@ defmodule ExMetra.CalendarDateTest do
   @exception_type 1
 
   @json %{
-    service_id: @service_id,
-    date: @date,
-    exception_type: @exception_type
+    "service_id" => @service_id,
+    "date" => @date,
+    "exception_type" => @exception_type
   }
 
   test "parse valid json" do

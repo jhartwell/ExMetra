@@ -14,14 +14,14 @@ defmodule ExMetra.StopTests do
   @wheelchair_boarding 1
 
   @json %{
-    stop_id: @stop_id,
-    stop_name: @stop_name,
-    stop_desc: @stop_desc,
-    stop_lat: @stop_lat,
-    stop_lon: @stop_lon,
-    zone_id: @zone_id,
-    stop_url: @stop_url,
-    wheelchair_boarding: @wheelchair_boarding
+    "stop_id" => @stop_id,
+    "stop_name" => @stop_name,
+    "stop_desc" => @stop_desc,
+    "stop_lat" => @stop_lat,
+    "stop_lon" => @stop_lon,
+    "zone_id" => @zone_id,
+    "stop_url" => @stop_url,
+    "wheelchair_boarding" => @wheelchair_boarding
   }
 
   test "parsing from valid json" do

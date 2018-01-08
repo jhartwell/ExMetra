@@ -30,17 +30,17 @@ defmodule ExMetra.StopTime do
   @spec from_json(map) :: ExMetra.StopTime.t
   def from_json(json) when is_map(json) do
         %ExMetra.StopTime {
-          trip_id: Map.get(json, :trip_id),
-          arrival_time: Map.get(json, :arrival_time) |> Utilities.to_time!,
-          departure_time: Map.get(json, :departure_time) |> Utilities.to_time!,
-          stop_id: Map.get(json, :stop_id),
-          stop_sequence: Map.get(json, :stop_sequence),
-          pickup_type: Map.get(json, :pickup_type),
-          drop_off_type: Map.get(json, :drop_off_type), 
-          center_boarding: Map.get(json, :center_boarding) |> Utilities.to_boolean!,
-          south_boarding: Map.get(json, :south_boarding) |> Utilities.to_boolean!,
-          bikes_allowed: Map.get(json, :bikes_allowed) |> Utilities.to_boolean!,
-          notice: Map.get(json, :notice) |> Utilities.to_boolean!
+          trip_id: Map.get(json, "trip_id"),
+          arrival_time: Map.get(json, "arrival_time") |> Utilities.to_time!,
+          departure_time: Map.get(json, "departure_time") |> Utilities.to_time!,
+          stop_id: Map.get(json, "stop_id"),
+          stop_sequence: Map.get(json, "stop_sequence"),
+          pickup_type: Map.get(json, "pickup_type"),
+          drop_off_type: Map.get(json, "drop_off_type"), 
+          center_boarding: Map.get(json, "center_boarding") |> Utilities.to_boolean!,
+          south_boarding: Map.get(json, "south_boarding") |> Utilities.to_boolean!,
+          bikes_allowed: Map.get(json, "bikes_allowed") |> Utilities.to_boolean!,
+          notice: Map.get(json, "notice") |> Utilities.to_boolean!
         }
   end
 end

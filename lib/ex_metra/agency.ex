@@ -23,13 +23,13 @@ defmodule ExMetra.Agency do
   @spec from_json(map) :: ExMetra.Agency.t
   def from_json(json) when is_map(json) do
     %ExMetra.Agency {
-      agency_id: Map.get(json, :agency_id),
-      agency_name: Map.get(json, :agency_name),
-      agency_url: Map.get(json, :agency_url), 
-      agency_timezone: Map.get(json, :agency_timezone),
-      agency_lang: Map.get(json, :agency_lang),
-      agency_phone: Map.get(json, :agency_phone),
-      agency_fare_url: Map.get(json, :agency_fare_url)
+      agency_id: Map.get(json, "agency_id"),
+      agency_name: Map.get(json, "agency_name"),
+      agency_url: Map.get(json, "agency_url"), 
+      agency_timezone: Map.get(json, "agency_timezone"),
+      agency_lang: Map.get(json, "agency_lang"),
+      agency_phone: Map.get(json, "agency_phone"),
+      agency_fare_url: Map.get(json, "agency_fare_url")
     }
   end
 end

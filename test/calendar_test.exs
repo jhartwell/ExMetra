@@ -16,16 +16,16 @@ defmodule ExMetra.CalendarTest do
   @end_date "2017-12-17"
 
   @json %{
-    service_id: @service_id,
-    monday: @monday,
-    tuesday: @tuesday,
-    wednesday: @wednesday,
-    thursday: @thursday,
-    friday: @friday,
-    saturday: @saturday,
-    sunday: @sunday,
-    start_date: @start_date,
-    end_date: @end_date
+    "service_id" => @service_id,
+    "monday" => @monday,
+    "tuesday" => @tuesday,
+    "wednesday" => @wednesday,
+    "thursday" => @thursday,
+    "friday" => @friday,
+    "saturday" => @saturday,
+    "sunday" => @sunday,
+    "start_date" => @start_date,
+    "end_date" => @end_date
   }
 
   test "parse from valid json" do

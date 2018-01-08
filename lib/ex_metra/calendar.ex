@@ -29,16 +29,16 @@ defmodule ExMetra.Calendar do
   @spec from_json(map) :: ExMetra.Calendar.t
   def from_json(json) when is_map(json) do
     %ExMetra.Calendar {
-      service_id: Map.get(json, :service_id),
-      monday: Map.get(json, :monday) |> Utilities.to_boolean!, 
-      tuesday: Map.get(json, :tuesday) |> Utilities.to_boolean!,
-      wednesday: Map.get(json, :wednesday) |> Utilities.to_boolean!,
-      thursday: Map.get(json, :thursday) |> Utilities.to_boolean!,
-      friday: Map.get(json, :friday) |> Utilities.to_boolean!,
-      saturday: Map.get(json, :saturday) |> Utilities.to_boolean!,
-      sunday: Map.get(json, :sunday) |> Utilities.to_boolean!,
-      start_date: Map.get(json, :start_date) |> Date.from_iso8601!,
-      end_date: Map.get(json, :end_date) |> Date.from_iso8601!
+      service_id: Map.get(json, "service_id"),
+      monday: Map.get(json, "monday") |> Utilities.to_boolean!, 
+      tuesday: Map.get(json, "tuesday") |> Utilities.to_boolean!,
+      wednesday: Map.get(json, "wednesday") |> Utilities.to_boolean!,
+      thursday: Map.get(json, "thursday") |> Utilities.to_boolean!,
+      friday: Map.get(json, "friday") |> Utilities.to_boolean!,
+      saturday: Map.get(json, "saturday") |> Utilities.to_boolean!,
+      sunday: Map.get(json, "sunday") |> Utilities.to_boolean!,
+      start_date: Map.get(json, "start_date") |> Date.from_iso8601!,
+      end_date: Map.get(json, "end_date") |> Date.from_iso8601!
     }
   end
 end

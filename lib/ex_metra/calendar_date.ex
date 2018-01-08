@@ -16,9 +16,9 @@ defmodule ExMetra.CalendarDate do
   @spec from_json(map) :: ExMetra.CalendarDate.t
   def from_json(json) when is_map(json) do
     %ExMetra.CalendarDate {
-      service_id: Map.get(json, :service_id),
-      date: Map.get(json, :date) |> Date.from_iso8601!,
-      exception_type: Map.get(json, :exception_type)
+      service_id: Map.get(json, "service_id"),
+      date: Map.get(json, "date") |> Date.from_iso8601!,
+      exception_type: Map.get(json, "exception_type")
     }
   end
 end

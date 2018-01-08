@@ -5,6 +5,7 @@ defprotocol ExMetra do
   def get!(value)
 end
 
+require Logger
 alias ExMetra.Agency
 alias ExMetra.Calendar
 alias ExMetra.CalendarDate
@@ -13,6 +14,7 @@ alias ExMetra.Shape
 alias ExMetra.Stop
 alias ExMetra.StopTime
 alias ExMetra.Trip
+alias ExMetra.Web
 
 defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopTime, Trip] do
   @doc """
@@ -36,34 +38,24 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
   """
   @spec get(Any) :: map | {:error, String.t}
   def get(_struct) do
-    resp = ExMetra.Web.get(@for.url())
-    |> process_web
-    |> process_resp
-    |> process_json
-
-    case resp do
-      {:error, msg} -> {:error, msg}
-      json -> Enum.map(&@for.from_json/1)
+    resp = Web.get(@for.url())
+    json = case resp do
+            {:ok, response} -> parse_response(response)
+            error -> error
+           end 
+    case json do
+      {:ok, json_result} ->  Enum.map(json_result, &@for.from_json/1)
+      error -> error
     end
   end
 
-  @spec process_web({atom, String.t}) :: {:error, String.t}
-  defp process_web({:error, msg}), do: {:error, msg}
 
-  @spec process_web({atom, HTTPoison.Response.t}) :: map | {:error, String.t}
-  defp process_web({:ok, resp}), do: process_resp(resp.body)
-
-  @spec process_resp({atom, String.t}) :: {:error, String.t}
-  defp process_resp({:error, msg}), do: {:error, msg}
-
-  @spec process_resp(String.t) :: map | {:error, String.t}
-  defp process_resp(body), do: Poison.Parser.parse(body) |> process_json
-
-  @spec process_json({atom, String.t}) :: {:error, String.t}
-  defp process_json({:error, msg}), do: {:error, msg}
-
-  @spec process_json({atom, map}) :: map
-  defp process_json({:ok, json}), do: json
+  defp parse_response(response) do
+    case response.status_code do
+      200 -> Poison.Parser.parse(response.body)
+      _ -> {:error, "API call failed due to status code #{response.status_code}"}
+    end
+  end
 end
 
 defimpl ExMetra, for: String do

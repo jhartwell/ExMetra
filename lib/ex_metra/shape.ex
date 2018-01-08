@@ -14,10 +14,10 @@ defmodule ExMetra.Shape do
   @spec from_json(map) :: ExMetra.Shape.t
   def from_json(json) when is_map(json) do
     %ExMetra.Shape {
-      shape_id: Map.get(json, :shape_id),
-      shape_pt_lat: Map.get(json, :shape_pt_lat),
-      shape_pt_lon: Map.get(json, :shape_pt_lon),
-      shape_pt_sequence: Map.get(json, :shape_pt_sequence)
+      shape_id: Map.get(json, "shape_id"),
+      shape_pt_lat: Map.get(json, "shape_pt_lat"),
+      shape_pt_lon: Map.get(json, "shape_pt_lon"),
+      shape_pt_sequence: Map.get(json, "shape_pt_sequence")
     }
   end
 end

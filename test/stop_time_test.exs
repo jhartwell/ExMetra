@@ -17,17 +17,17 @@ defmodule ExMetra.StopTimeTest do
   @notice 0
 
   @json %{
-    trip_id: @trip_id,
-    arrival_time: @arrival_time, 
-    departure_time: @departure_time,
-    stop_id: @stop_id,
-    stop_sequence: @stop_sequence,
-    pickup_type: @pickup_type,
-    drop_off_type: @drop_off_type,
-    center_boarding: @center_boarding,
-    south_boarding: @south_boarding,
-    bikes_allowed: @bikes_allowed,
-    notice: @notice
+    "trip_id" => @trip_id,
+    "arrival_time" => @arrival_time, 
+    "departure_time" => @departure_time,
+    "stop_id" => @stop_id,
+    "stop_sequence" => @stop_sequence,
+    "pickup_type" => @pickup_type,
+    "drop_off_type" => @drop_off_type,
+    "center_boarding" => @center_boarding,
+    "south_boarding" => @south_boarding,
+    "bikes_allowed" => @bikes_allowed,
+    "notice" => @notice
   }
 
   test "parsing valid json" do

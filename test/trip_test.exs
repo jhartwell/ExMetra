@@ -11,13 +11,13 @@ defmodule ExMetra.TripTest do
   @direction_id 1
 
   @json %{
-    route_id: @route_id,
-    service_id: @service_id,
-    trip_id: @trip_id,
-    trip_headsign: @trip_headsign,
-    block_id: @block_id,
-    shape_id: @shape_id,
-    direction_id: @direction_id
+    "route_id" => @route_id,
+    "service_id" => @service_id,
+    "trip_id" => @trip_id,
+    "trip_headsign" => @trip_headsign,
+    "block_id" => @block_id,
+    "shape_id" => @shape_id,
+    "direction_id" => @direction_id
   }
 
   test "parse valid json" do

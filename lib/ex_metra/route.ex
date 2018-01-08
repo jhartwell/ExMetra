@@ -22,15 +22,15 @@ defmodule ExMetra.Route do
   @spec from_json(map) :: ExMetra.Route.t
   def from_json(json) when is_map(json) do
     %ExMetra.Route{
-      route_id: Map.get(json, :route_id),
-      route_short_name: Map.get(json, :route_short_name),
-      route_long_name: Map.get(json, :route_long_name),
-      route_desc: Map.get(json, :route_desc),
-      agency_id: Map.get(json, :agency_id),
-      route_type: Map.get(json, :route_type),
-      route_color: Map.get(json, :route_color),
-      route_text_color: Map.get(json, :route_text_color),
-      route_url: Map.get(json, :route_url)
+      route_id: Map.get(json, "route_id"),
+      route_short_name: Map.get(json, "route_short_name"),
+      route_long_name: Map.get(json, "route_long_name"),
+      route_desc: Map.get(json, "route_desc"),
+      agency_id: Map.get(json, "agency_id"),
+      route_type: Map.get(json, "route_type"),
+      route_color: Map.get(json, "route_color"),
+      route_text_color: Map.get(json, "route_text_color"),
+      route_url: Map.get(json, "route_url")
     }
   end
 end

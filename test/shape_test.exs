@@ -8,10 +8,10 @@ defmodule ExMetra.ShapeTest do
   @shape_pt_sequence 2
 
   @json %{
-    shape_id: @shape_id,
-    shape_pt_lat: @shape_pt_lat,
-    shape_pt_lon: @shape_pt_lon,
-    shape_pt_sequence: @shape_pt_sequence
+    "shape_id" => @shape_id,
+    "shape_pt_lat" => @shape_pt_lat,
+    "shape_pt_lon" => @shape_pt_lon,
+    "shape_pt_sequence" => @shape_pt_sequence
   }
 
   test "parsing valid json" do
