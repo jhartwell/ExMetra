@@ -41,10 +41,10 @@ defmodule ExMetra.StopTimeTest do
     assert stop_time.stop_sequence == @stop_sequence
     assert stop_time.pickup_type == @pickup_type
     assert stop_time.drop_off_type == @drop_off_type
-    assert stop_time.center_boarding == Utilities.to_boolean(@center_boarding)
-    assert stop_time.south_boarding == Utilities.to_boolean(@south_boarding)
-    assert stop_time.bikes_allowed == Utilities.to_boolean(@bikes_allowed)
-    assert stop_time.notice == Utilities.to_boolean(@notice)
+    assert stop_time.center_boarding == Utilities.to_boolean!(@center_boarding)
+    assert stop_time.south_boarding == Utilities.to_boolean!(@south_boarding)
+    assert stop_time.bikes_allowed == Utilities.to_boolean!(@bikes_allowed)
+    assert stop_time.notice == Utilities.to_boolean!(@notice)
   end
 
   test "parsing invalid json" do

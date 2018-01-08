@@ -1,8 +1,9 @@
 defmodule ExMetra.StopTests do
   use ExUnit.Case
-  require Logger
-  alias ExMetra.Stop
 
+  alias ExMetra.Stop
+  alias ExMetra.Utilities
+  
   @stop_id "GENEVA"
   @stop_name "Geneva"
   @stop_desc ""
@@ -32,7 +33,7 @@ defmodule ExMetra.StopTests do
     assert stop.stop_lon ==  @stop_lon
     assert stop.zone_id == @zone_id
     assert stop.stop_url == @stop_url
-    assert stop.wheelchair_boarding == @wheelchair_boarding
+    assert stop.wheelchair_boarding == Utilities.to_boolean!(@wheelchair_boarding)
   end
 
 

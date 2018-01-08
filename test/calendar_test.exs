@@ -32,13 +32,13 @@ defmodule ExMetra.CalendarTest do
     calendar = Calendar.from_json(@json)
 
     assert calendar.service_id == @service_id
-    assert calendar.monday == Utilities.to_boolean(@monday)
-    assert calendar.tuesday == Utilities.to_boolean(@tuesday)
-    assert calendar.wednesday == Utilities.to_boolean(@wednesday)
-    assert calendar.thursday == Utilities.to_boolean(@thursday)
-    assert calendar.friday == Utilities.to_boolean(@friday)
-    assert calendar.saturday == Utilities.to_boolean(@saturday)
-    assert calendar.sunday == Utilities.to_boolean(@sunday)
+    assert calendar.monday == Utilities.to_boolean!(@monday)
+    assert calendar.tuesday == Utilities.to_boolean!(@tuesday)
+    assert calendar.wednesday == Utilities.to_boolean!(@wednesday)
+    assert calendar.thursday == Utilities.to_boolean!(@thursday)
+    assert calendar.friday == Utilities.to_boolean!(@friday)
+    assert calendar.saturday == Utilities.to_boolean!(@saturday)
+    assert calendar.sunday == Utilities.to_boolean!(@sunday)
     assert calendar.start_date == Date.from_iso8601!(@start_date)
     assert calendar.end_date == Date.from_iso8601!(@end_date)
   end

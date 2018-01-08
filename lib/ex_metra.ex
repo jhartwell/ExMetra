@@ -64,7 +64,6 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
 
   @spec process_json({atom, map}) :: map
   defp process_json({:ok, json}), do: json
-  end
 end
 
 defimpl ExMetra, for: String do

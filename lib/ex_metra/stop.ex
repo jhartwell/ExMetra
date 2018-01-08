@@ -3,6 +3,9 @@ defmodule ExMetra.Stop do
   @moduledoc """
   Represents a response from the stop API call
   """
+
+  alias ExMetra.Utilities
+  
   @type t :: %ExMetra.Stop{
                 stop_id: String.t, 
                 stop_name: String.t,
@@ -30,7 +33,7 @@ defmodule ExMetra.Stop do
       stop_lon: Map.get(json, :stop_lon),
       zone_id: Map.get(json, :zone_id),
       stop_url: Map.get(json, :stop_url),
-      wheelchair_boarding: Map.get(json, :wheelchair_boarding)
+      wheelchair_boarding: Map.get(json, :wheelchair_boarding) |> Utilities.to_boolean!
     }
   end
 end
