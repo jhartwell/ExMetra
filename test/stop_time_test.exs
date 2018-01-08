@@ -6,7 +6,7 @@ defmodule ExMetra.StopTimeTest do
 
   @trip_id "BNSF_BN1200_V1_A"
   @arrival_time "04:30:00"
-  @departure_time "04:30:00"
+  @departure_time "23:30:00"
   @stop_id "AURORA"
   @stop_sequence 1
   @pickup_type 0

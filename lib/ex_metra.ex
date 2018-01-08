@@ -44,7 +44,7 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
             error -> error
            end 
     case json do
-      {:ok, json_result} ->  Enum.map(json_result, &@for.from_json/1)
+      {:ok, json_result} ->  {:ok, Enum.map(json_result, &@for.from_json/1)}
       error -> error
     end
   end
