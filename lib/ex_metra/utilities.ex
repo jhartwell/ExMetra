@@ -38,4 +38,17 @@ defmodule ExMetra.Utilities do
     {int, _} = Integer.parse(value)
     int
   end
+
+  @doc "Checks a given module to see if it implements the given module."
+  @spec implements_protocol?(Protocol.t, Module.t) :: boolean
+  def implements_protocol?(protocol, module) do
+    try do
+      case Protocol.assert_impl!(protocol, module) do
+        :ok -> true
+        _ -> false
+      end
+    rescue
+      ArgumentError -> false
+    end
+  end
 end

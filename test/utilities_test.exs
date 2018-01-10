@@ -62,4 +62,9 @@ defmodule ExMetra.UtilitiesTest do
     end
   end
 
+  test "finding if protocol is implemented" do
+    assert Utilities.implements_protocol?(ExMetra, ExMetra.Trip)
+    assert !Utilities.implements_protocol?(ExMetra, Web)
+  end
+
 end
