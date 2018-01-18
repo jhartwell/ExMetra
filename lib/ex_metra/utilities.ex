@@ -5,16 +5,25 @@ defmodule ExMetra.Utilities do
   """
   @doc "Turn a list of strings into a list of Time with no error checking."
   @spec to_time!([String.t]) :: [Time.t]
-  def to_time!(value) when is_list(value), do: Enum.map(value, &Time.from_iso8601!/1)
-  
+  def to_time!(value) when is_list(value), do: Enum.map(value, fn x -> to_time!(x) end)
   @doc "Converts a string value into a Time value with no error checking."
   @spec to_time!(String.t) :: Time.t
   def to_time!(value) when is_binary(value) do
-    case String.starts_with?(value, "24") do
-      true -> String.replace(value, "24", "00") |> Time.from_iso8601!
-      false -> Time.from_iso8601!(value)
-    end
+    updated_hour = 
+      value
+      |> String.slice(0..1)
+      |> to_integer!
+      |> check_hour
+      |> to_string
+      |> String.pad_leading(2, "0")
+
+    remaining_time = String.slice(value,2,String.length(value) - 2)
+    Time.from_iso8601!("#{updated_hour}#{remaining_time}")
   end
+
+  defp check_hour(hour) when hour >= 24, do: hour - 24
+  defp check_hour(hour), do: hour
+
 
   @doc "Converts a list of string values into a list of boolean values."
   @spec to_boolean!([String.t]) :: [boolean]

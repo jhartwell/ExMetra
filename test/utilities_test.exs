@@ -23,7 +23,7 @@ defmodule ExMetra.UtilitiesTest do
   end
 
   test "invalid list time conversion" do
-    assert_raise ArgumentError, fn -> 
+    assert_raise MatchError, fn -> 
       Utilities.to_time!(["abc"])
     end
   end

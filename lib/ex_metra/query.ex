@@ -6,8 +6,6 @@ defmodule ExMetra.Query do
   defmacro __using__(_) do
     quote do
       import ExMetra.Query
-      alias ExMetra.Utilities
-      @protocol ExMetra
     end
   end
 
@@ -26,9 +24,28 @@ defmodule ExMetra.Query do
   defmacro where(struct, parameter, where_clause) do
     quote do
       value = Kernel.struct(unquote(struct))
-      case ExMetra.Utilities.implements_protocol?(@protocol, value.__struct__) do
+      case ExMetra.Utilities.implements_protocol?(ExMetra, value.__struct__) do
         true -> value |> ExMetra.get! |> Enum.filter(fn unquote(parameter) -> unquote(where_clause) end)
-        _ -> raise "#{unquote(struct)} does not implement the #{@protocol} protocol"
+        _ -> raise "#{unquote(struct)} does not implement the ExMetra protocol"
+      end
+    end
+  end
+
+  defmacro join(left, right, {left_value, right_value}) do
+    quote do
+      left_struct  = Kernel.struct(unquote(left))
+      right_struct = Kernel.struct(unquote(right))
+      
+      left_implements_protocol  = ExMetra.Utilities.implements_protocol?(ExMetra, left_struct.__struct__)
+      right_implements_protocol = ExMetra.Utilities.implements_protocol?(ExMetra, right_struct.__struct__)
+
+      case {left_implements_protocol, right_implements_protocol} do
+        {true, true} ->
+           lefts = ExMetra.get!(left_struct)
+           rights = ExMetra.get!(right_struct)
+           [ll] = lefts |> Enum.take(1)
+           {ll, Enum.filter(rights, fn x -> Map.get(x, unquote(right_value)) == Map.get(ll, unquote(left_value)) end)}
+        _ -> :error
       end
     end
   end
