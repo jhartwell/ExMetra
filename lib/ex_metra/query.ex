@@ -35,16 +35,18 @@ defmodule ExMetra.Query do
     quote do
       left_struct  = Kernel.struct(unquote(left))
       right_struct = Kernel.struct(unquote(right))
-      
+      timeout = 60000
       left_implements_protocol  = ExMetra.Utilities.implements_protocol?(ExMetra, left_struct.__struct__)
       right_implements_protocol = ExMetra.Utilities.implements_protocol?(ExMetra, right_struct.__struct__)
 
       case {left_implements_protocol, right_implements_protocol} do
         {true, true} ->
-           lefts = ExMetra.get!(left_struct)
-           rights = ExMetra.get!(right_struct)
-           [ll] = lefts |> Enum.take(1)
-           {ll, Enum.filter(rights, fn x -> Map.get(x, unquote(right_value)) == Map.get(ll, unquote(left_value)) end)}
+           left_task = Task.async(fn -> ExMetra.get!(left_struct) end)
+           right_task = Task.async(fn -> ExMetra.get!(right_struct) end)
+           lefts = Task.await(left_task, timeout)
+           rights = Task.await(right_task, timeout)
+           Enum.reduce(lefts, [], 
+              fn l, acc -> [{l,Enum.filter(rights, fn r -> Map.get(r, unquote(right_value)) == Map.get(l, unquote(left_value)) end)}| acc] end)
         _ -> :error
       end
     end
