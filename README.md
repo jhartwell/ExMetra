@@ -29,3 +29,9 @@ ExMetra.get!(%ExMetra.Route{})
 ```
 
 The ExMetra protocol is strict on what can be used in order to be passed in to the get functions. In order for the calls to work you must pass in a struct that is provided in this library that also uses the Result behaviour or you can pass in a string. If you pass in a string it will append that string to the Metra API base url, which is current https://gtfsapi.metrarail.com/
+
+## Query Language
+
+There is now the ability to query against the Metra API without having to actually do any filtering on the end user's part. Right now there are only 3 actions: get, where, join.
+
+#### Where
