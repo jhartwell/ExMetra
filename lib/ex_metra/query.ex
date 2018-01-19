@@ -31,6 +31,20 @@ defmodule ExMetra.Query do
     end
   end
 
+  @doc """
+  Makes a web call for both left and right values passed in and then will join them based on the criteria given in the tuple. Do note, that depending on which calls you are making this could take awhile to execute.
+  
+  ### Example
+  ~~~
+    alias ExMetra.Stop
+    alias ExMetra.StopTime
+    join Stop, StopTime, {:stop_id, :stop_id}
+  ~~~
+
+  This will return a tuple value with the first position being the value from the left hand side of the join (Stop in this example) and then the second position is a list of right hand side values (StopTime in this example)
+  """
+
+  @spec join(struct, struct, {:atom, :atom}) :: [tuple]
   defmacro join(left, right, {left_value, right_value}) do
     quote do
       left_struct  = Kernel.struct(unquote(left))

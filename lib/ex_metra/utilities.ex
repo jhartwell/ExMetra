@@ -21,6 +21,7 @@ defmodule ExMetra.Utilities do
     Time.from_iso8601!("#{updated_hour}#{remaining_time}")
   end
 
+  @spec check_hour(integer) :: integer
   defp check_hour(hour) when hour >= 24, do: hour - 24
   defp check_hour(hour), do: hour
 
