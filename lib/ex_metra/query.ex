@@ -6,14 +6,45 @@ defmodule ExMetra.Query do
   @type parameter_value :: Any
   @type predicate :: function
 
-  @doc "Makes a call to the Metra API and returns all the results. This is the same as calling `ExMetra.get!(struct) but is presented here to make a unified query language so that you can perform all tasks with just one module"
+  @doc """
+  Makes a call to the Metra API and returns all the results. This is the same as calling `ExMetra.get!(struct) but is presented here to make a unified query language so that you can perform all tasks with just one module.
+
+  ### Example
+
+  ~~~
+    alias ExMetra.Agency
+    get Agency
+  ~~~
+  """
   @spec get(struct) :: [struct]
   defmacro get(struct) do
     quote do
-      value = struct(unquote(struct))
+      value = Kernel.struct(unquote(struct))
       case ExMetra.Utilities.implements_protocol?(ExMetra, value.__struct__) do
         true -> value |> ExMetra.get!
         _ -> raise "#{value.__struct__} does not implement the ExMetra protocol"
+      end
+    end
+  end
+
+  @doc """
+  Makes a call to the Metra API but only pulls the specific field(s) that are provided as the second argument.
+
+  ### Example
+
+  ~~~
+    alias ExMetra.Agency
+    select Agency, :agency_id
+  ~~~
+
+  """
+  @spec select(struct, atom) :: [Any]
+  defmacro select(struct, value) when is_atom(value) do
+    quote do
+      strct = Kernel.struct(unquote(struct))
+      case ExMetra.Utilities.implements_protocol?(ExMetra, strct.__struct__) do
+        true -> strct |> ExMetra.get! |> Enum.map(fn x -> Map.get(x,unquote(value)) end)
+        _ -> raise "#{strct.__struct__} does not implement the ExMetra protocol"
       end
     end
   end
