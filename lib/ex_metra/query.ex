@@ -4,7 +4,7 @@ defmodule ExMetra.Query do
   """  
   
   @type parameter_value :: Any
-  @predicate :: function
+  @type predicate :: function
 
   @doc "Makes a call to the Metra API and returns all the results. This is the same as calling `ExMetra.get!(struct) but is presented here to make a unified query language so that you can perform all tasks with just one module"
   @spec get(struct) :: [struct]

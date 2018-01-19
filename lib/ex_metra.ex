@@ -49,7 +49,6 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
     end
   end
 
-  @doc "Determines if the HTTPoison request was successful based on status code. If it is successful it tries to parse the JSON, if it isn't then an error will be returned"
   @spec parse_response(HTTPoison.Response.t) :: map | {:error, String.t}
   defp parse_response(response) do
     case response.status_code do
