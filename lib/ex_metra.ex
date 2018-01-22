@@ -26,7 +26,7 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
   @spec get!(Any) :: [Any]
   def get!(_struct) do
     ExMetra.Web.get!(@for.url()).body
-    |> Poison.Parser.parse!
+    |> Poison.Parser.parse!()
     |> Enum.map(&@for.from_json/1)
   end
 
@@ -36,21 +36,24 @@ defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopT
     Usage:
       ExMetra.get(%ExMetra.Agency{})
   """
-  @spec get(Any) :: map | {:error, String.t}
+  @spec get(Any) :: map | {:error, String.t()}
   def get(_struct) do
     resp = Web.get(@for.url())
-    json = case resp do
-            {:ok, response} -> parse_response(response)
-            error -> error
-           end 
+
+    json =
+      case resp do
+        {:ok, response} -> parse_response(response)
+        error -> error
+      end
+
     case json do
-      {:ok, json_result} ->  {:ok, Enum.map(json_result, &@for.from_json/1)}
+      {:ok, json_result} -> {:ok, Enum.map(json_result, &@for.from_json/1)}
       error -> error
     end
   end
 
   @doc "Determines if the HTTPoison request was successful based on status code. If it is successful it tries to parse the JSON, if it isn't then an error will be returned"
-  @spec parse_response(HTTPoison.Response.t) :: map | {:error, String.t}
+  @spec parse_response(HTTPoison.Response.t()) :: map | {:error, String.t()}
   defp parse_response(response) do
     case response.status_code do
       200 -> Poison.Parser.parse(response.body)
@@ -61,13 +64,13 @@ end
 
 defimpl ExMetra, for: String do
   @doc "Gets a URL from the Metra API with the provided string appended to the root URL. There is no error checking and no post-processing done. This function returns the raw body of the web call."
-  @spec get!(String.t) :: String.t
+  @spec get!(String.t()) :: String.t()
   def get!(url) do
     ExMetra.Web.get!(url).body
   end
 
   @doc "Gets a URL from the Metra API with the provided string appended to the root URL. There is error checking but there is no post-processing done. This function returns the raw body of the web call."
-  @spec get(String.t) :: String.t
+  @spec get(String.t()) :: String.t()
   def get(url) do
     case ExMetra.Web.get(url) do
       {:ok, resp} -> resp.body

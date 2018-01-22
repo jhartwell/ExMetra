@@ -3,7 +3,7 @@ defmodule ExMetra.StopTests do
 
   alias ExMetra.Stop
   alias ExMetra.Utilities
-  
+
   @stop_id "GENEVA"
   @stop_name "Geneva"
   @stop_desc ""
@@ -26,20 +26,19 @@ defmodule ExMetra.StopTests do
 
   test "parsing from valid json" do
     stop = Stop.from_json(@json)
-    
+
     assert stop.stop_id == @stop_id
     assert stop.stop_name == @stop_name
     assert stop.stop_lat == @stop_lat
-    assert stop.stop_lon ==  @stop_lon
+    assert stop.stop_lon == @stop_lon
     assert stop.zone_id == @zone_id
     assert stop.stop_url == @stop_url
     assert stop.wheelchair_boarding == Utilities.to_boolean!(@wheelchair_boarding)
   end
 
-
   test "parsing from invalid json" do
     assert_raise FunctionClauseError, fn ->
-      Stop.from_json []
+      Stop.from_json([])
     end
   end
 end

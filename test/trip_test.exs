@@ -34,7 +34,7 @@ defmodule ExMetra.TripTest do
 
   test "parse invalid json" do
     assert_raise FunctionClauseError, fn ->
-      Trip.from_json []
+      Trip.from_json([])
     end
   end
 end

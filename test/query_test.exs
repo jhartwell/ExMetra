@@ -6,7 +6,7 @@ defmodule ExMetra.QueryTest do
 
   test "where clause query" do
     trip_id = "BNSF_BN1200_V1_A"
-    trips = ExMetra.Query.where Trip, x, x.trip_id == trip_id
+    trips = ExMetra.Query.where(Trip, x, x.trip_id == trip_id)
 
     assert trips != nil
     assert Enum.count(trips) == 1

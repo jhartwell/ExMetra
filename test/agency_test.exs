@@ -22,7 +22,7 @@ defmodule ExMetra.AgencyTest do
   }
 
   test "parsing valid json" do
-    agency = Agency.from_json @json
+    agency = Agency.from_json(@json)
 
     assert agency.agency_id == @agency_id
     assert agency.agency_name == @agency_name
@@ -35,7 +35,7 @@ defmodule ExMetra.AgencyTest do
 
   test "parsing invalid json parameter" do
     assert_raise FunctionClauseError, fn ->
-      Agency.from_json []
+      Agency.from_json([])
     end
   end
 end

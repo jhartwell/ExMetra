@@ -22,7 +22,7 @@ defmodule ExMetra.CalendarDateTest do
 
   test "parse invalid json" do
     assert_raise FunctionClauseError, fn ->
-      CalendarDate.from_json []
+      CalendarDate.from_json([])
     end
   end
 end

@@ -1,10 +1,10 @@
 defmodule ExMetra.ShapeTest do
-  use ExUnit.Case 
+  use ExUnit.Case
   alias ExMetra.Shape
 
   @shape_id "BNSF_IB_1"
   @shape_pt_lat 41.75945392475
-  @shape_pt_lon  -88.30906426603
+  @shape_pt_lon -88.30906426603
   @shape_pt_sequence 2
 
   @json %{
@@ -25,7 +25,7 @@ defmodule ExMetra.ShapeTest do
 
   test "parsing invalid parameter" do
     assert_raise FunctionClauseError, fn ->
-      Shape.from_json []
+      Shape.from_json([])
     end
   end
 end

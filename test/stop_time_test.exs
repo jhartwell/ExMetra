@@ -18,7 +18,7 @@ defmodule ExMetra.StopTimeTest do
 
   @json %{
     "trip_id" => @trip_id,
-    "arrival_time" => @arrival_time, 
+    "arrival_time" => @arrival_time,
     "departure_time" => @departure_time,
     "stop_id" => @stop_id,
     "stop_sequence" => @stop_sequence,
@@ -31,8 +31,7 @@ defmodule ExMetra.StopTimeTest do
   }
 
   test "parsing valid json" do
-    stop_time = StopTime.from_json @json  
-
+    stop_time = StopTime.from_json(@json)
 
     assert stop_time.trip_id == "BNSF_BN1200_V1_A"
     assert stop_time.arrival_time == Time.from_iso8601!(@arrival_time)
@@ -49,7 +48,7 @@ defmodule ExMetra.StopTimeTest do
 
   test "parsing invalid json" do
     assert_raise FunctionClauseError, fn ->
-      StopTime.from_json []
+      StopTime.from_json([])
     end
   end
 end

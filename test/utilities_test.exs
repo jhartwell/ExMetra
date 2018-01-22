@@ -1,7 +1,7 @@
 defmodule ExMetra.UtilitiesTest do
   use ExUnit.Case
   alias ExMetra.Utilities
-  
+
   @time "04:30:00"
   @time_list [
     "01:30:43",
@@ -9,11 +9,11 @@ defmodule ExMetra.UtilitiesTest do
   ]
 
   test "valid time conversion" do
-    assert {:ok, Utilities.to_time!(@time)} == Time.new(4,30,0)
+    assert {:ok, Utilities.to_time!(@time)} == Time.new(4, 30, 0)
   end
 
   test "valid list time conversion" do
-    times = Utilities.to_time! @time_list
+    times = Utilities.to_time!(@time_list)
 
     [actual_first | [actual_second]] = times
     [expected_first | [expected_second]] = @time_list
@@ -23,7 +23,7 @@ defmodule ExMetra.UtilitiesTest do
   end
 
   test "invalid list time conversion" do
-    assert_raise MatchError, fn -> 
+    assert_raise MatchError, fn ->
       Utilities.to_time!(["abc"])
     end
   end
@@ -46,7 +46,7 @@ defmodule ExMetra.UtilitiesTest do
 
   test "invalid boolean conversion" do
     assert_raise MatchError, fn ->
-      Utilities.to_boolean! "a"
+      Utilities.to_boolean!("a")
     end
   end
 
@@ -66,5 +66,4 @@ defmodule ExMetra.UtilitiesTest do
     assert Utilities.implements_protocol?(ExMetra, ExMetra.Trip)
     assert !Utilities.implements_protocol?(ExMetra, Web)
   end
-
 end
