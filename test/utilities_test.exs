@@ -8,6 +8,8 @@ defmodule ExMetra.UtilitiesTest do
     "03:24:13"
   ]
 
+  @date_time "2018-03-07T09:00:00.000Z"
+
   test "valid time conversion" do
     assert {:ok, Utilities.to_time!(@time)} == Time.new(4, 30, 0)
   end
@@ -50,6 +52,14 @@ defmodule ExMetra.UtilitiesTest do
     end
   end
 
+  test "true string to boolean" do
+    assert Utilities.to_boolean!("true") == true
+  end
+
+  test "false string to boolean" do
+    assert Utilities.to_boolean!("false") == false
+  end
+
   test "parsing integer with valid integer" do
     assert Utilities.to_integer!("10") == 10
     assert Utilities.to_integer!("134") == 134
@@ -66,4 +76,11 @@ defmodule ExMetra.UtilitiesTest do
     assert Utilities.implements_protocol?(ExMetra, ExMetra.Trip)
     assert !Utilities.implements_protocol?(ExMetra, Web)
   end
+
+  test "valid datetime parse" do
+    {:ok, dt, _} = DateTime.from_iso8601(@date_time)
+    assert dt == ExMetra.Utilities.to_datetime!(@date_time)
+  end
+
+
 end

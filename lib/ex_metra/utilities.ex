@@ -28,9 +28,16 @@ defmodule ExMetra.Utilities do
   @spec to_boolean!([String.t()]) :: [boolean]
   def to_boolean!(value) when is_list(value), do: Enum.map(value, &to_boolean!/1)
 
+  @doc "Converts true and false strings to their appropriate boolean values"
+  @spec to_boolean!(String.t) :: boolean
+  def to_boolean!("true"), do: true
+  def to_boolean!("false"), do: false
+
   @doc "Converts a string value into a boolean value by first trying to convert the string into an integer. There is no error checking so if that conversion cannot happen then the function will fail."
   @spec to_boolean!(String.t()) :: boolean
   def to_boolean!(value) when is_binary(value), do: to_integer!(value) |> to_boolean!
+
+  
 
   @doc "Converts an integer into a boolean. If the integer is equal to 1 then it is considered true. All other values are going to represent false."
   @spec to_boolean!(integer) :: boolean
@@ -58,5 +65,12 @@ defmodule ExMetra.Utilities do
     rescue
       ArgumentError -> false
     end
+  end
+
+  @doc "Converts a binary value into a datetime. The binary value should be given in ISO8601 format"
+  @spec to_datetime!(binary) :: DateTime.t
+  def to_datetime!(value) do
+    {:ok, date_time, _} = DateTime.from_iso8601(value)
+    date_time
   end
 end

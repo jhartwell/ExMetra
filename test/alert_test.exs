@@ -71,13 +71,13 @@ defmodule ExMetra.AlertTest do
   test "valid alert parsing" do
     json = Poison.Parser.parse!(@json)
     alert = ExMetra.Alert.from_json(json)
-    assert @route == alert.route  
+    assert @route == alert.route_id
     assert @description == alert.description
     assert @header == alert.header
     assert @id == alert.id
     assert @is_deleted == alert.is_deleted
-    assert ExMetra.Utilities.to_time!(@end_time) == alert.end_time
-    assert ExMetra.Utilities.to_time!(@start_time) == alert.start_time
+    assert ExMetra.Utilities.to_datetime!(@end_time) == alert.alert_end
+    assert ExMetra.Utilities.to_datetime!(@start_time) == alert.alert_start
     assert @stop_id == alert.stop_id
     assert @trip == alert.trip
     assert @trip_update == alert.trip_update
