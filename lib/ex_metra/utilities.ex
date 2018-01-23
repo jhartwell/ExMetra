@@ -1,4 +1,5 @@
 defmodule ExMetra.Utilities do
+  require Logger
   @moduledoc """
   A collection of functions that are used to help with conversions
   """

@@ -7,6 +7,7 @@ end
 
 require Logger
 alias ExMetra.Agency
+alias ExMetra.Alert
 alias ExMetra.Calendar
 alias ExMetra.CalendarDate
 alias ExMetra.Route
@@ -16,7 +17,7 @@ alias ExMetra.StopTime
 alias ExMetra.Trip
 alias ExMetra.Web
 
-defimpl ExMetra, for: [Agency, Calendar, CalendarDate, Route, Shape, Stop, StopTime, Trip] do
+defimpl ExMetra, for: [Agency, Alert, Calendar, CalendarDate, Route, Shape, Stop, StopTime, Trip] do
   @doc """
     Uses ExMetra.Web to make a get call to the Metra API with no error checking. The given module must implement the Result behaviour so that there is a guarentee that the url and from_json functions are implemented.
 
