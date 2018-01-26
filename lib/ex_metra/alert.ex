@@ -1,6 +1,5 @@
 defmodule ExMetra.Alert do
   @behaviour Result
-  require Logger
 
   @type t :: %ExMetra.Alert {
           id: integer, 

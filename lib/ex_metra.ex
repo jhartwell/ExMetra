@@ -21,8 +21,10 @@ defimpl ExMetra, for: [Agency, Alert, Calendar, CalendarDate, Route, Shape, Stop
   @doc """
     Uses ExMetra.Web to make a get call to the Metra API with no error checking. The given module must implement the Result behaviour so that there is a guarentee that the url and from_json functions are implemented.
 
-    Usage:
+    ###Example:
+      ```
       ExMetra.get!(%ExMetra.Agency{})
+      ```
   """
   @spec get!(Any) :: [Any]
   def get!(_struct) do
@@ -34,8 +36,10 @@ defimpl ExMetra, for: [Agency, Alert, Calendar, CalendarDate, Route, Shape, Stop
   @doc """
     Uses ExMetra.Web to make a get call to the Metra API with error checking. The given module must implement the Result behaviour so that there is a guarentee that the url and from_json functions are implemented.
 
-    Usage:
+    ###Example:
+      ```
       ExMetra.get(%ExMetra.Agency{})
+      ```
   """
   @spec get(Any) :: map | {:error, String.t()}
   def get(_struct) do
@@ -53,7 +57,6 @@ defimpl ExMetra, for: [Agency, Alert, Calendar, CalendarDate, Route, Shape, Stop
     end
   end
 
-  @doc "Determines if the HTTPoison request was successful based on status code. If it is successful it tries to parse the JSON, if it isn't then an error will be returned"
   @spec parse_response(HTTPoison.Response.t()) :: map | {:error, String.t()}
   defp parse_response(response) do
     case response.status_code do
